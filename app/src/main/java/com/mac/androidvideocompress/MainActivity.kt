@@ -1,6 +1,7 @@
 package com.mac.androidvideocompress
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -42,10 +43,15 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
         Log.e(TAG, "开始压缩")
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         checkPermission()
+
+        window.statusBarColor = R.color.write
+        StatusBarUtils.setStatusTextColor(false,this)
+
         selectVideo.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, REQUEST_VIDEO_CODE)
