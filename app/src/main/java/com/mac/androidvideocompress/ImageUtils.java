@@ -33,7 +33,7 @@ import java.net.URL;
  * @date 2018/3/5.
  */
 public class ImageUtils {
-    private static final String thumbImgDirPath = getStoragePath();
+    private static final String thumbImgDirPath = App.mContext.getCacheDir().getAbsolutePath();
     private static File thumbImgDir;
 
     private static String getStoragePath() {
