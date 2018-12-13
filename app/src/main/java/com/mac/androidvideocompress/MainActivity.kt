@@ -14,6 +14,9 @@ import android.util.Log
 import com.bumptech.glide.Glide
 import com.mac.compressjava.videocompressor.SiliCompressor
 import com.mac.compressjava.videocompressor.VideoCompressAsyncTask
+import com.mac.macdocument.MacDoc
+import com.mac.macdocument.PreviewActivity
+import com.mac.macdocument.toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
@@ -27,20 +30,43 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
     lateinit var leftUrl: String
     lateinit var rightUrl: String
     var isCompressFinished = false
+    lateinit var progressDialog: ProgressDialog
+    var isVideoCompressOk: Boolean = false
+    lateinit var compressVideoPath: String
+
+    val path = "/sdcard/tencent/QQfile_recv/8000G大型单机游戏集合.pdf"
+
     override fun onSuccess(compressedFile: File) {
         Log.e(TAG, "压缩完成")
+        Glide.with(this).load(compressedFile).into(videoRight)
+        videoRightTv.text = getFileSizeMb(compressedFile.length())
+        if (progressDialog?.isShowing) {
+            progressDialog.dismiss()
+        }
+        isVideoCompressOk = true
+        compressVideoPath = compressedFile.absolutePath
     }
 
     override fun onFail() {
         Log.e(TAG, "压缩失败")
+        if (progressDialog?.isShowing) {
+            progressDialog.dismiss()
+        }
     }
 
     override fun onProgress(percent: Float) {
         Log.e(TAG, "压缩进度 $percent%")
+        progressDialog?.setProgress(percent.toInt())
     }
 
     override fun onCompressStart() {
         Log.e(TAG, "开始压缩")
+        showProgress()
+    }
+
+    private fun showProgress() {
+        progressDialog = ProgressDialog(this)
+        progressDialog.show()
     }
 
     @SuppressLint("ResourceAsColor")
@@ -50,12 +76,7 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
         checkPermission()
 
         window.statusBarColor = R.color.write
-        StatusBarUtils.setStatusTextColor(false,this)
-
-        selectVideo.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, REQUEST_VIDEO_CODE)
-        }
+        StatusBarUtils.setStatusTextColor(false, this)
 
         image_left.setOnClickListener {
             if (isCompressFinished) {
@@ -76,6 +97,24 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
                 toPreviewImage(rightUrl)
             }
         }
+        showFile.setOnClickListener {
+            val intent = Intent(this, PreviewActivity::class.java)
+            intent.putExtra(PreviewActivity.FILE_PATH_KEY, path)
+            startActivity(intent)
+        }
+
+        videoLeft.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(intent, REQUEST_VIDEO_CODE)
+        }
+
+        videoRight.setOnClickListener {
+            if (isVideoCompressOk) {
+                MacDoc.playVideoWithX5(compressVideoPath, this)
+            } else {
+                toast("尚未压缩完成")
+            }
+        }
     }
 
     private fun toPreviewImage(url: String) {
@@ -90,8 +129,12 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
 
     private fun checkPermission() {
         if (!checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    , Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_PERMISSION_STORAGE)
+            ActivityCompat.requestPermissions(this, arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_PHONE_STATE,
+                    Manifest.permission.ACCESS_WIFI_STATE
+            ), REQUEST_PERMISSION_STORAGE)
         }
     }
 
@@ -106,6 +149,9 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
                         val videoPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
                         val size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE))
                         val f = compressFilePath("/videos")
+
+                        Glide.with(this).load(videoPath).into(videoLeft)
+                        videoLeftTv.text = getFileSizeMb(size)
                         compress(File(videoPath), f.path)
                     } else if (requestCode == REQUEST_IMAGE_CODE) {
                         val id = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID))

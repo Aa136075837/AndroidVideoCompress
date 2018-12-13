@@ -68,9 +68,53 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="选择视频"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/videoLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintTop_toBottomOf="@+id/selectVideo"/>
+
+    <TextView
+        android:id="@+id/videoLeftTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintTop_toBottomOf="@+id/videoLeft"
+        tools:text="adfas"/>
+
+    <ImageView
+        android:id="@+id/videoRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintLeft_toRightOf="@+id/videoLeft"
+        app:layout_constraintTop_toBottomOf="@+id/selectVideo"/>
+
+    <TextView
+        android:id="@+id/videoRightTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintLeft_toRightOf="@+id/videoLeft"
+        app:layout_constraintTop_toBottomOf="@+id/videoRight"
+        tools:text="adfas"/>
+
+    <TextView
+        android:id="@+id/showFile"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="查看文件"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
