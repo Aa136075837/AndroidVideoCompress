@@ -3,13 +3,16 @@ package com.mac.transitionanim
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
+import android.transition.Slide
+import android.view.Gravity
+import android.view.Window
 import kotlinx.android.synthetic.main.activity_a.*
 
 class AActivity : AppCompatActivity() {
     var data = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
-//        requestWindowFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-//        window.exitTransition = Slide(Gravity.LEFT)
+        requestWindowFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+        window.exitTransition = Slide(Gravity.BOTTOM)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_a)
 
