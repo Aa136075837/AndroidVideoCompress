@@ -17,6 +17,7 @@ import com.mac.compressjava.videocompressor.VideoCompressAsyncTask
 import com.mac.macdocument.MacDoc
 import com.mac.macdocument.PreviewActivity
 import com.mac.macdocument.toast
+import com.mac.transitionanim.AActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
@@ -114,6 +115,9 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
             } else {
                 toast("尚未压缩完成")
             }
+        }
+        imageList.setOnClickListener {
+            startActivity(Intent(this, AActivity::class.java))
         }
     }
 

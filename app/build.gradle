@@ -49,6 +49,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation rootProject.ext.dependenciesName["photoView"]
     api project(':macdocument')
+    implementation project(':transitionanim')
 }
 
 //dependencies {
