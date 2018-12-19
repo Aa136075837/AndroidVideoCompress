@@ -17,6 +17,8 @@ import com.mac.compressjava.videocompressor.VideoCompressAsyncTask
 import com.mac.macdocument.MacDoc
 import com.mac.macdocument.PreviewActivity
 import com.mac.macdocument.toast
+import com.mac.mutiimage.util.JImageLoader
+import com.mac.mutiimage.weixin.WeixinMerge
 import com.mac.transitionanim.AActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
@@ -119,6 +121,15 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
         imageList.setOnClickListener {
             startActivity(Intent(this, AActivity::class.java))
         }
+
+        val imageLoader = JImageLoader(this)
+        imageLoader.configDefaultPic(R.drawable.header)
+        val urls = ArrayList<String>()
+        urls.add("https://avatars3.githubusercontent.com/u/6203389?v=4")
+        urls.add("https://avatars3.githubusercontent.com/u/1446536?v=4")
+        urls.add("https://avatars0.githubusercontent.com/u/66577?v=4")
+        urls.add("https://avatars0.githubusercontent.com/u/933874?v=4")
+        imageLoader.displayImages(urls, avatar, WeixinMerge(), 90, 90)
     }
 
     private fun toPreviewImage(url: String) {

@@ -50,6 +50,7 @@ dependencies {
     implementation rootProject.ext.dependenciesName["photoView"]
     api project(':macdocument')
     implementation project(':transitionanim')
+    implementation project(':mutiimage')
 }
 
 //dependencies {
