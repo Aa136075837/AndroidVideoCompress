@@ -1,1 +1,1 @@
-include ':app', ':compress', ':compressjava', ':macdocument', ':transitionanim', ':mutiimage'
+include ':app', ':compress', ':compressjava', ':macdocument', ':transitionanim', ':mutiimage', ':maccommon-java'

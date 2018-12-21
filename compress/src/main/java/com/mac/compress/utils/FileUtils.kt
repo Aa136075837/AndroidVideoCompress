@@ -2,7 +2,7 @@ package com.mac.compress.utils
 
 import android.content.Context
 import android.net.Uri
-import androidx.core.content.FileProvider
+import android.support.v4.content.FileProvider
 import java.io.File
 
 /**

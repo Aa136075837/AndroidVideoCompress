@@ -1,6 +1,6 @@
 package com.mac.compress.provider
 
-import androidx.core.content.FileProvider
+import android.support.v4.content.FileProvider
 
 
 /**

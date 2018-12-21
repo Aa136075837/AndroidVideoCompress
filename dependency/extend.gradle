@@ -1,9 +1,13 @@
 def photoView_version = "2.0.0"
 def glide_version = "4.8.0"
+def dagger_version = "2.19"
+def dagger_compiler_version = "2.19"
 
 project.ext {
     dependenciesName = [
-            photoView: "com.github.chrisbanes:PhotoView:$photoView_version",
-            glide    : "com.github.bumptech.glide:glide:$glide_version"
+            photoView      : "com.github.chrisbanes:PhotoView:$photoView_version",
+            glide          : "com.github.bumptech.glide:glide:$glide_version",
+            dagger         : "com.google.dagger:dagger:$dagger_version",
+            dagger_compiler: "com.google.dagger:dagger-compiler:$dagger_compiler_version"
     ]
 }

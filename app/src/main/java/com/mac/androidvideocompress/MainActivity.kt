@@ -14,6 +14,7 @@ import android.util.Log
 import com.bumptech.glide.Glide
 import com.mac.compressjava.videocompressor.SiliCompressor
 import com.mac.compressjava.videocompressor.VideoCompressAsyncTask
+import com.mac.maccommon_java.MacDaggerActivity
 import com.mac.macdocument.MacDoc
 import com.mac.macdocument.PreviewActivity
 import com.mac.macdocument.toast
@@ -130,6 +131,12 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
         urls.add("https://avatars0.githubusercontent.com/u/66577?v=4")
         urls.add("https://avatars0.githubusercontent.com/u/933874?v=4")
         imageLoader.displayImages(urls, avatar, WeixinMerge(), 90, 90)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        startActivity(Intent(this@MainActivity, MacDaggerActivity::class.java))
+        finish()
     }
 
     private fun toPreviewImage(url: String) {
