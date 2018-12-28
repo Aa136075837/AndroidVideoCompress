@@ -135,8 +135,8 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
 
     override fun onResume() {
         super.onResume()
-        startActivity(Intent(this@MainActivity, MacDaggerActivity::class.java))
-        finish()
+//        startActivity(Intent(this@MainActivity, MacDaggerActivity::class.java))
+//        finish()
     }
 
     private fun toPreviewImage(url: String) {

@@ -8,6 +8,10 @@ androidExtensions {
     experimental = true
 }
 
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -23,9 +27,26 @@ android {
             abiFilters "armeabi"
         }
     }
+
+    signingConfigs {
+//            debug {
+//                storeFile file(project.getRootDir().toString() + File.separator + "files" + File.separator + "OA.jks")
+//                storePassword project.SIGNINGCONFIGS_STORE_PASSWORD
+//                keyAlias project.SIGNINGCONFIGS_KEY_ALIAS
+//                keyPassword project.SIGNINGCONFIGS_KEY_PASSWORD
+//            }
+        release {
+            storeFile file(project.getRootDir().toString() + File.separator + "files" + File.separator + "mac.jks")
+            storePassword project.SIGNINGCONFIGS_STORE_PASSWORD
+            keyAlias project.SIGNINGCONFIGS_KEY_ALIAS
+            keyPassword project.SIGNINGCONFIGS_KEY_PASSWORD
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -33,6 +54,19 @@ android {
         main {
             jniLibs.srcDirs = ['libs']
         }
+    }
+}
+
+android.applicationVariants.all { variant ->
+
+    variant.outputs.all {
+        def appName = variant.getApplicationId()
+        def sarry = appName.split("\\.")
+
+        variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/app/build/outputs/apk")
+
+        outputFileName = "${sarry.last()}-${variant.buildType.name}-V${variant.versionName.replaceAll("\\.", "")}(${variant.versionCode})_${releaseTime()}.apk";
+
     }
 }
 
