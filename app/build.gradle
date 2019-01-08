@@ -57,18 +57,18 @@ android {
     }
 }
 
-android.applicationVariants.all { variant ->
-
-    variant.outputs.all {
-        def appName = variant.getApplicationId()
-        def sarry = appName.split("\\.")
-
-        variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/app/build/outputs/apk")
-
-        outputFileName = "${sarry.last()}-${variant.buildType.name}-V${variant.versionName.replaceAll("\\.", "")}(${variant.versionCode})_${releaseTime()}.apk";
-
-    }
-}
+//android.applicationVariants.all { variant ->
+//
+//    variant.outputs.all {
+//        def appName = variant.getApplicationId()
+//        def sarry = appName.split("\\.")
+//
+//        variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/app/build/outputs/apk")
+//
+//        outputFileName = "${sarry.last()}-${variant.buildType.name}-V${variant.versionName.replaceAll("\\.", "")}(${variant.versionCode})_${releaseTime()}.apk";
+//
+//    }
+//}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -93,6 +93,7 @@ dependencies {
     implementation project(':transitionanim')
     implementation project(':mutiimage')
     implementation project(':maccommon-java')
+    implementation project(':facerecognition')
 }
 
 //dependencies {

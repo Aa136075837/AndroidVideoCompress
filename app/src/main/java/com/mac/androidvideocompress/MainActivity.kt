@@ -14,7 +14,7 @@ import android.util.Log
 import com.bumptech.glide.Glide
 import com.mac.compressjava.videocompressor.SiliCompressor
 import com.mac.compressjava.videocompressor.VideoCompressAsyncTask
-import com.mac.maccommon_java.MacDaggerActivity
+import com.mac.facerecognition.FaceRecognitionActivity
 import com.mac.macdocument.MacDoc
 import com.mac.macdocument.PreviewActivity
 import com.mac.macdocument.toast
@@ -135,8 +135,8 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
 
     override fun onResume() {
         super.onResume()
-//        startActivity(Intent(this@MainActivity, MacDaggerActivity::class.java))
-//        finish()
+        startActivity(Intent(this@MainActivity, FaceRecognitionActivity::class.java))
+        finish()
     }
 
     private fun toPreviewImage(url: String) {

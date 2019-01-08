@@ -1,1 +1,1 @@
-include ':app', ':compress', ':compressjava', ':macdocument', ':transitionanim', ':mutiimage', ':maccommon-java'
+include ':app', ':compress', ':compressjava', ':macdocument', ':transitionanim', ':mutiimage', ':maccommon-java', ':facerecognition'

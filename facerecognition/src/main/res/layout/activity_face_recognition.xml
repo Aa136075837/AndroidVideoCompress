@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FaceRecognitionActivity">
+
+    <ImageView
+        android:id="@+id/imageFace"
+        android:layout_width="200dp"
+        android:src="@drawable/qrcode_default_scan_line"
+        android:layout_height="200dp"/>
+
+    <com.mac.facerecognition.faceview.AutoFitTextureView
+        android:id="@+id/mFaceTexture"
+        android:layout_width="272.27dp"
+        android:layout_height="241.6dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="228.25dp"/>
+
+    <com.mac.facerecognition.faceview.AutoFitTextureView
+        android:id="@+id/mFaceFaces"
+        android:layout_width="272.27dp"
+        android:layout_height="241.6dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="228.25dp"/>
+
+    <com.mac.facerecognition.faceview.ScanBoxView
+        android:id="@+id/mFaceScanBoxView"
+        android:layout_width="272.27dp"
+        android:layout_height="241.6dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="228.25dp"
+
+        app:qrcv_animTime="1000"
+
+        app:qrcv_barcodeRectHeight="140dp"
+        app:qrcv_cornerColor="@color/scan_line_color"
+        app:qrcv_cornerDisplayType="center"
+        app:qrcv_cornerLength="20dp"
+        app:qrcv_cornerSize="2dp"
+        app:qrcv_customScanLineDrawable="@drawable/qrcode_default_scan_line"
+        app:qrcv_isBarcode="false"
+        app:qrcv_isOnlyDecodeScanBoxArea="false"
+        app:qrcv_isScanLineReverse="true"
+        app:qrcv_isShowDefaultGridScanLineDrawable="false"
+        app:qrcv_isShowDefaultScanLineDrawable="true"
+        app:qrcv_isShowLocationPoint="false"
+        app:qrcv_isShowTipBackground="true"
+        app:qrcv_isShowTipTextAsSingleLine="false"
+        app:qrcv_isTipTextBelowRect="false"
+        app:qrcv_rectWidth="272.27dp"
+        app:qrcv_scanLineColor="@color/scan_line_color"
+        app:qrcv_scanLineMargin="0dp"
+        app:qrcv_scanLineSize="0.5dp"
+        app:qrcv_tipTextSize="12sp"
+        app:qrcv_toolbarHeight="56dp"
+        app:qrcv_verticalBias="-1" />
+
+</FrameLayout>
