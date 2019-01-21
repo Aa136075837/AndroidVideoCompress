@@ -1,6 +1,8 @@
 package com.mac.androidvideocompress
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.TypedValue
 
 /**
@@ -20,4 +22,9 @@ fun Context.px2dip(px: Int): Int {
 
 fun Context.sp2px(sp: Int): Int {
     return (TypedValue.applyDimension(2, sp.toFloat(), resources.getDisplayMetrics()) + 0.5f).toInt()
+}
+
+fun Activity.toActivity(cls: Class<*>) {
+    val intent = Intent(this, cls)
+    startActivity(intent)
 }

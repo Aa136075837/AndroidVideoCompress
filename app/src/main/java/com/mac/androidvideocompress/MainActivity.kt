@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
         Log.e(TAG, "压缩完成")
         Glide.with(this).load(compressedFile).into(videoRight)
         videoRightTv.text = getFileSizeMb(compressedFile.length())
-        if (progressDialog?.isShowing) {
+        if (progressDialog.isShowing) {
             progressDialog.dismiss()
         }
         isVideoCompressOk = true
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
 
     override fun onFail() {
         Log.e(TAG, "压缩失败")
-        if (progressDialog?.isShowing) {
+        if (progressDialog.isShowing) {
             progressDialog.dismiss()
         }
     }
@@ -135,8 +135,6 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
 
     override fun onResume() {
         super.onResume()
-        startActivity(Intent(this@MainActivity, FaceRecognitionActivity::class.java))
-        finish()
     }
 
     private fun toPreviewImage(url: String) {

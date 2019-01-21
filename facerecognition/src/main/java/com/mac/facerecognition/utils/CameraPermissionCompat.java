@@ -10,6 +10,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 
+/**
+ * @author mac
+ */
 public class CameraPermissionCompat {
     private static final int REQUEST_CODE_CAMERA = 999;
     private static OnCameraPermissionListener mOnCameraPermissionListener;
@@ -17,7 +20,7 @@ public class CameraPermissionCompat {
 
     /**
      * 检测摄像头权限 没有就会申请
-     * @param context
+     * @param context context
      * @param listener 申请权限的结果回调
      * @return
      */

@@ -15,22 +15,22 @@
 
     <com.mac.facerecognition.faceview.AutoFitTextureView
         android:id="@+id/mFaceTexture"
-        android:layout_width="272.27dp"
-        android:layout_height="241.6dp"
+        android:layout_width="204.2dp"
+        android:layout_height="181.2dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="228.25dp"/>
 
     <com.mac.facerecognition.faceview.AutoFitTextureView
         android:id="@+id/mFaceFaces"
-        android:layout_width="272.27dp"
-        android:layout_height="241.6dp"
+        android:layout_width="204.2dp"
+        android:layout_height="181.2dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="228.25dp"/>
 
     <com.mac.facerecognition.faceview.ScanBoxView
         android:id="@+id/mFaceScanBoxView"
-        android:layout_width="272.27dp"
-        android:layout_height="241.6dp"
+        android:layout_width="204.2dp"
+        android:layout_height="181.2dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="228.25dp"
 

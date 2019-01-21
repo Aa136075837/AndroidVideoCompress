@@ -14,6 +14,7 @@ import android.os.HandlerThread
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.util.Size
 import android.util.SparseIntArray
 import android.view.Surface
@@ -30,7 +31,9 @@ import java.util.concurrent.Semaphore
 class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListener {
     override fun onImageSaved(savedFile: File?) {
         runOnUiThread {
-            Glide.with(this).load(savedFile).into(imageFace)
+            if(!isDestroyed){
+                Glide.with(this).load(savedFile).into(imageFace)
+            }
         }
     }
 
@@ -262,7 +265,7 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
             val rotation = activity.windowManager.defaultDisplay.rotation
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, getOrientation(rotation))
 
-            val CaptureCallback = object : CameraCaptureSession.CaptureCallback() {
+            val captureCallback = object : CameraCaptureSession.CaptureCallback() {
 
                 override fun onCaptureCompleted(session: CameraCaptureSession,
                                                 request: CaptureRequest,
@@ -273,7 +276,7 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
             }
 
             mCaptureSession!!.stopRepeating()
-            mCaptureSession!!.capture(captureBuilder.build(), CaptureCallback, null)
+            mCaptureSession!!.capture(captureBuilder.build(), captureCallback, null)
         } catch (e: CameraAccessException) {
             e.printStackTrace()
         }
@@ -295,10 +298,10 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
     internal var ORIENTATIONS = SparseIntArray()
 
     init {
-        ORIENTATIONS.append(Surface.ROTATION_0, 90);
-        ORIENTATIONS.append(Surface.ROTATION_90, 0);
-        ORIENTATIONS.append(Surface.ROTATION_180, 270);
-        ORIENTATIONS.append(Surface.ROTATION_270, 180);
+        ORIENTATIONS.append(Surface.ROTATION_0, 90)
+        ORIENTATIONS.append(Surface.ROTATION_90, 0)
+        ORIENTATIONS.append(Surface.ROTATION_180, 270)
+        ORIENTATIONS.append(Surface.ROTATION_270, 180)
     }
 
     private fun getOrientation(rotation: Int): Int {
@@ -330,11 +333,11 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
 
             val cameraSensorOrientation = mCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)!!
 
-            val x = (mCameraRect!!.bottom - mCameraRect!!.top) / getmRealWidth()
-            val y = (mCameraRect!!.right - mCameraRect!!.left) / getmRealHeight()
+            val x = (mCameraRect!!.bottom - mCameraRect!!.top) / getRealWidth()
+            val y = (mCameraRect!!.right - mCameraRect!!.left) / getRealHeight()
 
-            if (mFacing == CameraCharacteristics.LENS_FACING_BACK) {
-                when (cameraSensorOrientation) {
+            when (mFacing) {
+                CameraCharacteristics.LENS_FACING_BACK -> when (cameraSensorOrientation) {
                     90 -> {
                         mappedRect.left = (mCameraRect!!.bottom - auxRect.bottom) / x
                         mappedRect.top = auxRect.left / y
@@ -348,8 +351,7 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
                         mappedRect.bottom = (mCameraRect!!.right - auxRect.left) / y
                     }
                 }
-            } else if (mFacing == CameraCharacteristics.LENS_FACING_FRONT) {
-                when (cameraSensorOrientation) {
+                CameraCharacteristics.LENS_FACING_FRONT -> when (cameraSensorOrientation) {
                     270 -> {
                         mappedRect.left = (mCameraRect!!.bottom - auxRect.top) / x
                         mappedRect.top = (mCameraRect!!.right - auxRect.right) / y
@@ -357,8 +359,7 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
                         mappedRect.bottom = (mCameraRect!!.right - auxRect.left) / y
                     }
                 }
-            } else {
-                throw IllegalArgumentException("not support this camera!")
+                else -> throw IllegalArgumentException("not support this camera!")
             }
 
 
@@ -369,18 +370,18 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
 
     }
 
-    private fun getmRealHeight(): Float {
+    private fun getRealHeight(): Float {
         return mFaceFaces.getmRealHeight().toFloat()
     }
 
-    private fun getmRealWidth(): Float {
+    private fun getRealWidth(): Float {
         return mFaceFaces.getmRealWidth().toFloat()
     }
 
     private val mOnImageAvailableListener = ImageReader.OnImageAvailableListener { reader ->
         val cameraSensorOrientation = mCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)!!
         handler?.post(ImageSaver(reader.acquireNextImage(),
-                cameraSensorOrientation, mCameraRect, cacheDir,this))
+                cameraSensorOrientation, mCameraRect, cacheDir, this))
     }
 
     private fun configureTransform(viewWidth: Int, viewHeight: Int) {
@@ -409,8 +410,8 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
         mFaceFaces.setTransform(matrix)
     }
 
-    private val MAX_PREVIEW_WIDTH = 1920
-    private val MAX_PREVIEW_HEIGHT = 1080
+    private val MAX_PREVIEW_WIDTH = 1080
+    private val MAX_PREVIEW_HEIGHT = 1920
     private lateinit var mCharacteristics: CameraCharacteristics
     private var mFacing: Int? = CameraCharacteristics.LENS_FACING_FRONT
     private var mImageReader: ImageReader? = null
@@ -485,11 +486,11 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
                         maxPreviewHeight, largest)
 
                 // We fit the aspect ratio of TextureView to the size of preview we picked.
-                val orientation = getResources().getConfiguration().orientation
+                val orientation = resources.configuration.orientation
                 if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    setAspectRatio(mPreviewSize.getWidth(), mPreviewSize.getHeight())
+                    setAspectRatio(mPreviewSize.width, mPreviewSize.height)
                 } else {
-                    setAspectRatio(mPreviewSize.getHeight(), mPreviewSize.getWidth())
+                    setAspectRatio(mPreviewSize.height, mPreviewSize.width)
                 }
 
                 mCameraId = cameraId
@@ -529,13 +530,10 @@ class FaceRecognitionActivity : AppCompatActivity(), ImageSaver.OnImageSaveListe
 
         // Pick the smallest of those big enough. If there is no one big enough, pick the
         // largest of those not big enough.
-        return if (bigEnough.size > 0) {
-            Collections.min(bigEnough, CompareSizesByArea())
-        } else if (notBigEnough.size > 0) {
-            Collections.max(notBigEnough, CompareSizesByArea())
-        } else {
-
-            choices[0]
+        return when {
+            bigEnough.size > 0 -> Collections.min(bigEnough, CompareSizesByArea())
+            notBigEnough.size > 0 -> Collections.max(notBigEnough, CompareSizesByArea())
+            else -> choices[0]
         }
     }
 }
