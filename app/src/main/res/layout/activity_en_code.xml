@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".EnCodeActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/mEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/mEncode"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="button" />
+
+        <TextView
+            android:id="@+id/mEcTextView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:background="@color/colorAccent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/mEditTextRight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/mEncodeRight"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="button" />
+
+            <Button
+                android:id="@+id/mDecodeRight"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="button" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/mEcTextViewRight"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+    </LinearLayout>
+</LinearLayout>

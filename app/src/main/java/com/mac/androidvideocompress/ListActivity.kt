@@ -29,6 +29,8 @@ class ListActivity : AppCompatActivity() {
         data.add("人脸")
         data.add("alv")
         data.add("跳转")
+        data.add("协程")
+        data.add("encode")
         mListView.adapter = CompressAdapter()
         mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             when (position) {
@@ -43,6 +45,12 @@ class ListActivity : AppCompatActivity() {
                 }
                 3 -> {
                     toActivity(AActivity::class.java)
+                }
+                4 -> {
+                    toActivity(CoroutinesActivity::class.java)
+                }
+                5 -> {
+                    toActivity(EnCodeActivity::class.java)
                 }
                 else -> {
                 }
