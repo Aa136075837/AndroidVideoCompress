@@ -36,9 +36,9 @@ public class CombineBitmapTools {
             bitmaps = bitmaps.subList(0, 9);
         }
 
-        mLinePaint = new Paint();
-        mLinePaint.setColor(Color.WHITE);
-        mLinePaint.setStrokeWidth(5);
+//        mLinePaint = new Paint();
+//        mLinePaint.setColor(Color.WHITE);
+//        mLinePaint.setStrokeWidth(5);
 
         Bitmap resultBitmap = null;
         int len = bitmaps.size();
@@ -58,9 +58,9 @@ public class CombineBitmapTools {
 
         int width = resultBitmap.getWidth();
         int height = resultBitmap.getHeight();
-        Canvas canvas = new Canvas(resultBitmap);
-        canvas.drawLine(width / 2, 0, width / 2, height, mLinePaint);
-        canvas.drawLine(0, height / 2, width, height / 2, mLinePaint);
+//        Canvas canvas = new Canvas(resultBitmap);
+//        canvas.drawLine(width / 3, 0, width / 3, height, mLinePaint);
+//        canvas.drawLine(0, height / 3, width, height / 3, mLinePaint);
 
         return resultBitmap;
     }

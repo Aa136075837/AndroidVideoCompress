@@ -127,8 +127,11 @@ class MainActivity : AppCompatActivity(), VideoCompressAsyncTask.CompressListene
         imageLoader.configDefaultPic(R.drawable.header)
         val urls = ArrayList<String>()
         urls.add("https://avatars3.githubusercontent.com/u/6203389?v=4")
+        urls.add("https://avatars3.githubusercontent.com/u/6203389?v=4")
         urls.add("https://avatars3.githubusercontent.com/u/1446536?v=4")
         urls.add("https://avatars0.githubusercontent.com/u/66577?v=4")
+        urls.add("https://avatars0.githubusercontent.com/u/66577?v=4")
+        urls.add("https://avatars0.githubusercontent.com/u/933874?v=4")
         urls.add("https://avatars0.githubusercontent.com/u/933874?v=4")
         imageLoader.displayImages(urls, avatar, WeixinMerge(), 90, 90)
     }

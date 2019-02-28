@@ -16,7 +16,6 @@ import java.util.List;
 
 public class CombineNineRect {
     /**
-     *
      * @param combineWidth
      * @param combineHeight
      * @param count
@@ -44,25 +43,25 @@ public class CombineNineRect {
             }
         }
 
-//        switch (count) {
-//            case 3:
-//                mList.remove(0);
-//                modifyListWhenCountThree(mList);
-//                break;
-//            case 5:
-//                mList.remove(0);
-//                modifyListWhenCountFive(mList);
-//                break;
-//            case 7:
-//                mList.remove(0);
-//                mList.remove(0);
-//                modifyListWhenCountSeven(mList);
-//                break;
-//            case 8:
-//                mList.remove(0);
-//                modifyListWhenCountEight(mList);
-//                break;
-//        }
+        switch (count) {
+            case 3:
+                mList.remove(0);
+                modifyListWhenCountThree(mList);
+                break;
+            case 5:
+                mList.remove(0);
+                modifyListWhenCountFive(mList);
+                break;
+            case 7:
+                mList.remove(0);
+                mList.remove(0);
+                modifyListWhenCountSeven(mList);
+                break;
+            case 8:
+                mList.remove(0);
+                modifyListWhenCountEight(mList);
+                break;
+        }
 
         return mList;
     }
@@ -87,23 +86,23 @@ public class CombineNineRect {
     }
 
     private static ColumnRowCount generateColumnRowCountByCount(int count) {
-        return new ColumnRowCount(2, 2, count);
-//        switch (count) {
-////            case 2:
-////                return new ColumnRowCount(1, 2, count);
-////            case 3:
-//            case 4:
-//                return new ColumnRowCount(2, 2, count);
-////            case 5:
-////            case 6:
-////                return new ColumnRowCount(2, 3, count);
-////            case 7:
-////            case 8:
-////            case 9:
-////                return new ColumnRowCount(3, 3, count);
-//            default:
-//                return new ColumnRowCount(2, 2, count);
-//        }
+//        return new ColumnRowCount(2, 2, count);
+        switch (count) {
+            case 2:
+                return new ColumnRowCount(1, 2, count);
+            case 3:
+            case 4:
+                return new ColumnRowCount(2, 2, count);
+            case 5:
+            case 6:
+                return new ColumnRowCount(2, 3, count);
+            case 7:
+            case 8:
+            case 9:
+                return new ColumnRowCount(3, 3, count);
+            default:
+                return new ColumnRowCount(1, 1, count);
+        }
     }
 
     private static class ColumnRowCount {
