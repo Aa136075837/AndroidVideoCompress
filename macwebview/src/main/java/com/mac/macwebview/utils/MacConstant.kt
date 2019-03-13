@@ -5,6 +5,6 @@ class MacConstant {
         const val FILE_CHOOSER_RESULT_CODE = 2
         const val REQUEST_SELECT_FILE = 100
 
-        const val CM_ATHENA = "MAC"
+        const val MAC_AGENT = "MAC"
     }
 }

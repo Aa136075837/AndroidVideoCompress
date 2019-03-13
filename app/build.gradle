@@ -96,6 +96,7 @@ dependencies {
     implementation project(':mutiimage')
     implementation project(':maccommon-java')
     implementation project(':facerecognition')
+    implementation 'com.aliyun.ams:alicloud-android-hotfix:3.2.8'
 }
 
 //dependencies {

@@ -52,7 +52,7 @@ class MacWebView : WebView {
         webSettings.javaScriptEnabled = true
         webSettings.domStorageEnabled = true
         val ua = webSettings.userAgentString
-        webSettings.userAgentString = ua + "/" + MacConstant.CM_ATHENA
+        webSettings.userAgentString = ua + "/" + MacConstant.MAC_AGENT
         // Set cache size to 8 mb by default. should be more than enough
         webSettings.setAppCacheMaxSize((1024 * 1024 * 8).toLong())
         val appCachePath = mContext.cacheDir.absolutePath
@@ -133,8 +133,6 @@ class MacWebView : WebView {
 
         //设置Cookie
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            AthenaCookieSyncManager.getInstance(mContext).getCookieManager().setAcceptThirdPartyCookies(this, true)
-//            AthenaCookieSyncManager.getInstance(mContext).getCookieManager().setAcceptFileSchemeCookies(true)
             webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
     }
