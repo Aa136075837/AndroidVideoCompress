@@ -29,7 +29,7 @@ class ListActivity : BaseActivity() {
         data.add("视频、图片压缩。图片组合、文件预览")
         data.add("人脸")
         data.add("alv")
-        data.add("跳转")
+        data.add("相册")
         data.add("协程")
         data.add("encode")
         data.add("CustomView")
