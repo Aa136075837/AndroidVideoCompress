@@ -12,6 +12,8 @@ def releaseTime() {
     return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
+def qmui_arch_version = '0.6.1'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -92,6 +94,9 @@ dependencies {
     }
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
     api project(':macdocument')
+    implementation 'com.qmuiteam:qmui:1.4.0'
+    implementation "com.qmuiteam:arch:$qmui_arch_version"
+    kapt "com.qmuiteam:arch-compiler:$qmui_arch_version" // use annotationProcessor if java
     implementation project(':transitionanim')
     implementation project(':mutiimage')
     implementation project(':maccommon-java')

@@ -1,11 +1,11 @@
 package com.mac.androidvideocompress
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.mac.androidvideocompress.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_en_code.*
 
-class EnCodeActivity : AppCompatActivity() {
+class EnCodeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

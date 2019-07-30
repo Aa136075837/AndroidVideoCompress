@@ -11,11 +11,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.mac.androidvideocompress.base.BaseActivity
 import com.mac.facerecognition.FaceRecognitionActivity
 import com.mac.transitionanim.AActivity
 import kotlinx.android.synthetic.main.activity_list.*
 
-class ListActivity : AppCompatActivity() {
+class ListActivity : BaseActivity() {
     private val data = ArrayList<String>()
     val REQUEST_PERMISSION_STORAGE = 0x4962
 
@@ -31,6 +32,7 @@ class ListActivity : AppCompatActivity() {
         data.add("跳转")
         data.add("协程")
         data.add("encode")
+        data.add("CustomView")
         mListView.adapter = CompressAdapter()
         mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             when (position) {
@@ -51,6 +53,9 @@ class ListActivity : AppCompatActivity() {
                 }
                 5 -> {
                     toActivity(EnCodeActivity::class.java)
+                }
+                6 -> {
+                    toActivity(CustomViewActivity::class.java)
                 }
                 else -> {
                 }

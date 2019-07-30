@@ -2,7 +2,7 @@ package com.mac.androidvideocompress
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.support.v7.widget.StaggeredGridLayoutManager.HORIZONTAL
@@ -14,10 +14,11 @@ import com.alibaba.android.vlayout.VirtualLayoutManager
 import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.alibaba.android.vlayout.layout.StaggeredGridLayoutHelper
+import com.mac.androidvideocompress.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_alv.*
 import kotlinx.android.synthetic.main.item_alv.view.*
 
-class ALvActivity : AppCompatActivity() {
+class ALvActivity : BaseActivity() {
     val icons = arrayOf(R.drawable.add,
             R.drawable.add_member_sel, R.drawable.add_member_seled, R.drawable.album)
 

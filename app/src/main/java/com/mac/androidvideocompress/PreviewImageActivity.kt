@@ -1,11 +1,11 @@
 package com.mac.androidvideocompress
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.mac.androidvideocompress.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_preview_image.*
 
-class PreviewImageActivity : AppCompatActivity() {
+class PreviewImageActivity : BaseActivity() {
     lateinit var url: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
